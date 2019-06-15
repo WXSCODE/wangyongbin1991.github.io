@@ -7,7 +7,7 @@ title: 王先森博客
 subtitle:
 description:
 keywords:
-author: John Doe
+author: Sir Wong
 language:
 timezone:
 
@@ -73,10 +73,31 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: aath
+theme: yilia
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-deploy: https://github.com/wangyongbin1991/wangyongbin1991.github.io.git
-type: git
-branch: master
+
+deploy:
+    type: git
+    repository: https://github.com/wangyongbin1991/wangyongbin1991.github.io.git
+    branch: master
+
+jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
