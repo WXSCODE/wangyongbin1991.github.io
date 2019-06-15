@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="王先森博客">
 <meta property="og:description" content="安装git[root@localhost ~/testdir]#yum install -y git 创建仓库repository版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。先创建一个空目录[root@localhost ~/te">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-13T06:33:12.028Z">
+<meta property="og:updated_time" content="2019-06-13T07:28:37.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习">
 <meta name="twitter:description" content="安装git[root@localhost ~/testdir]#yum install -y git 创建仓库repository版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。先创建一个空目录[root@localhost ~/te">
@@ -50,7 +50,7 @@
 			<img src class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		  <h1 class="header-author"><a href="/">Sir Wong</a></h1>
 		</hgroup>
 		
 
@@ -108,7 +108,7 @@
 				<img src class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">John Doe</h1>
+			  <h1 class="header-author js-header-author">Sir Wong</h1>
 			</hgroup>
 			
 			
@@ -177,6 +177,153 @@
         <h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>[root@localhost ~/testdir]#yum install -y git</p>
 <h2 id="创建仓库repository"><a href="#创建仓库repository" class="headerlink" title="创建仓库repository"></a>创建仓库repository</h2><p>版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。<br>先创建一个空目录<br>[root@localhost ~/testdir]#mkdir testdir</p>
 <p>初始化目录，变成仓库<br>[root@localhost ~/testdir]#git init /root/testdir/</p>
+<p>初始化完成后可以看到相应目录下生成.git目录。这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件。<br>[root@localhost ~/testdir]#ls -a<br>.  ..  .git</p>
+<h2 id="把工作区文件添加到暂存区"><a href="#把工作区文件添加到暂存区" class="headerlink" title="把工作区文件添加到暂存区"></a>把工作区文件添加到暂存区</h2><p>创建一个测试文件<br>[root@localhost ~/testdir]#vim readme<br>this is a test file<br>control by git</p>
+<p>查看工作区状态<br>[root@localhost ~/testdir]#git status<br> On branch master</p>
+<p> Initial commit</p>
+<p> Untracked files:<br>   (use “git add <file>…” to include in what will be committed)</file></p>
+<pre><code>readme                        #未追踪文件
+</code></pre><p>nothing added to commit but untracked files present (use “git add” to track)              </p>
+<p>添加工作区文件到暂存区<br>[root@localhost ~/testdir]#git add readme</p>
+<p>[root@localhost ~/testdir]#git status<br> On branch master</p>
+<p> Initial commit</p>
+<p> Changes to be committed:<br>   (use “git rm –cached <file>…” to unstage)                    #可以从暂存区删除文件</file></p>
+<pre><code>new file:   readme
+</code></pre><p>从暂存区删除文件<br>[root@localhost ~/testdir]#git rm -f readme                    #-f：删除暂存区和工作区的中的文件，彻底删除</p>
+<p>[root@localhost ~/testdir]#git rm –cache readme                #–cache：删除暂存区的文件</p>
+<h2 id="提交文件"><a href="#提交文件" class="headerlink" title="提交文件"></a>提交文件</h2><p>[root@localhost ~/testdir]#git commit -m “test file”                #-m后面输入的是本次提交的说明。不能少<br>[master (root-commit) e936f52] test file<br> Committer: root <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#x40;&#x6c;&#111;&#x63;&#x61;&#x6c;&#104;&#x6f;&#115;&#116;&#46;&#x6c;&#111;&#99;&#97;&#108;&#100;&#x6f;&#109;&#x61;&#105;&#110;" target="_blank" rel="noopener">&#114;&#x6f;&#x6f;&#116;&#x40;&#x6c;&#111;&#x63;&#x61;&#x6c;&#104;&#x6f;&#115;&#116;&#46;&#x6c;&#111;&#99;&#97;&#108;&#100;&#x6f;&#109;&#x61;&#105;&#110;</a><br>Your name and email address were configured automatically based<br>on your username and hostname. Please check that they are accurate.            因为没有自己创建用户和邮箱，git使用了默认配置<br>You can suppress this message by setting them explicitly:                </p>
+<pre><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email you@example.com
+</code></pre><p>After doing this, you may fix the identity used for this commit with:</p>
+<pre><code>git commit --amend --reset-author
+</code></pre><p> 1 file changed, 2 insertions(+)<br> create mode 100644 readme</p>
+<p>创建用户<br>[root@localhost ~/testdir]#git config –global user.name kej                #创建用户</p>
+<p>[root@localhost ~/testdir]#git config –global user.email <a href="mailto:kej@www.kej.com" target="_blank" rel="noopener">kej@www.kej.com</a>                #创建邮箱</p>
+<p>重新提交<br>[root@localhost ~/testdir]#git commit –amend –reset-author -m “test file”<br>[master 45bac50] test file<br> 1 file changed, 2 insertions(+)                #提示一个文件改动(readme)。插入了两行内容(readme有两行内容)<br> create mode 100644 readme</p>
+<p>查看提交日志</p>
+<pre><code>[root@localhost ~/testdir]#git log
+</code></pre><p>commit 45bac5002fc85d77e8eceda34781805c0cb09798<br>Author: kej <a href="mailto:&#107;&#x65;&#106;&#x40;&#x77;&#119;&#119;&#46;&#x6b;&#x65;&#106;&#x2e;&#x63;&#x6f;&#109;" target="_blank" rel="noopener">&#107;&#x65;&#106;&#x40;&#x77;&#119;&#119;&#46;&#x6b;&#x65;&#106;&#x2e;&#x63;&#x6f;&#109;</a><br>Date:   Sun Jun 2 15:35:28 2019 +0800</p>
+<p>commit可以一次提交很多文件，所以你可以多次add不同的文件</p>
+<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><p>现在readme文件已经被追踪。修改readme<br>[root@localhost ~/testdir]#vim readme<br>this is a test file<br>controled by git<br>the third line</p>
+<p>查看工作区状态<br>[root@localhost ~/testdir]#git status<br> On branch master<br> Changes not staged for commit:<br>   (use “git add <file>…” to update what will be committed)<br>   (use “git checkout – <file>…” to discard changes in working directory)</file></file></p>
+<pre><code>modified:   readme                    #readme文件发生改变
+</code></pre><p>no changes added to commit (use “git add” and/or “git commit -a”)</p>
+<p>查看工作区该文件与版本库中当前分支上该文件之间的差异<br>[root@localhost ~/testdir]#git diff readme<br>diff –git a/readme b/readme<br>index 1d206bd..11d0dbd 100644<br>— a/readme<br>+++ b/readme<br>@@ -1,2 +1,3 @@<br> this is a test file<br> controled by git<br>+the third line                        #提示新增加了一行</p>
+<p>把文件增加到暂存区<br>[root@localhost ~/testdir]#git add readme</p>
+<p>提交<br>[root@localhost ~/testdir]#git commit -m “add third line” readme<br>[master 032c62c] add third line<br> 1 file changed, 1 insertion(+)</p>
+<p>查看工作区状态<br>[root@localhost ~/testdir]#git status</p>
+<h1 id="On-branch-master"><a href="#On-branch-master" class="headerlink" title="On branch master"></a>On branch master</h1><p>nothing to commit, working directory clean</p>
+<p>查看提交日志<br>[root@localhost ~/testdir]#git log<br>commit 032c62c487d1764293923d16d9477dbc113c1414<br>Author: kej <a href="mailto:&#107;&#101;&#x6a;&#64;&#x77;&#x77;&#119;&#46;&#x6b;&#x65;&#106;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#107;&#101;&#x6a;&#64;&#x77;&#x77;&#119;&#46;&#x6b;&#x65;&#106;&#46;&#99;&#111;&#x6d;</a><br>Date:   Sun Jun 2 15:58:33 2019 +0800</p>
+<pre><code>add third line
+</code></pre><p>commit 45bac5002fc85d77e8eceda34781805c0cb09798<br>Author: kej <a href="mailto:&#107;&#x65;&#x6a;&#x40;&#x77;&#119;&#x77;&#46;&#x6b;&#101;&#106;&#x2e;&#99;&#x6f;&#109;" target="_blank" rel="noopener">&#107;&#x65;&#x6a;&#x40;&#x77;&#119;&#x77;&#46;&#x6b;&#101;&#106;&#x2e;&#99;&#x6f;&#109;</a><br>Date:   Sun Jun 2 15:35:28 2019 +0800</p>
+<pre><code>test file
+</code></pre><p>要回退到上个版本，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本。<br>也就是最新提交的commit 032c62c487d1764293923d16d9477dbc113c1414。上一个版本就是HEAD^，<br>上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</p>
+<p>[root@localhost ~/testdir]#git reset –hard HEAD^                        #hard|mix|soft三种回退方式；默认mix<br>HEAD is now at 45bac50 test file</p>
+<p>最新版本已经看不到了<br>[root@localhost ~/testdir]#git log<br>commit 45bac5002fc85d77e8eceda34781805c0cb09798<br>Author: kej <a href="mailto:&#107;&#x65;&#x6a;&#64;&#119;&#119;&#119;&#46;&#x6b;&#x65;&#106;&#x2e;&#x63;&#111;&#x6d;" target="_blank" rel="noopener">&#107;&#x65;&#x6a;&#64;&#119;&#119;&#119;&#46;&#x6b;&#x65;&#106;&#x2e;&#x63;&#111;&#x6d;</a><br>Date:   Sun Jun 2 15:35:28 2019 +0800</p>
+<pre><code>test file
+</code></pre><p>已经还原到第一个版本<br>[root@localhost ~/testdir]#cat readme<br>this is a test file<br>controled by git </p>
+<p>此时还可以回到第二个版本，只要上面的命令行窗口还没有被关掉，找到第二个版本的commit id。commit id号<br>不用写全，一般前6位就行了。<br>每当你觉得文件修改到一定程度的时候，就可以“保存一个快照”，这个快照在Git中被称为commit。<br>一旦你把文件改乱了，或者误删了文件，还可以从最近的一个commit恢复，然后继续工作.</p>
+<p>[root@localhost ~/testdir]#git reset –hard 032c62<br>HEAD is now at 032c62c add third line</p>
+<p>[root@localhost ~/testdir]#cat readme<br>this is a test file<br>controled by git<br>the third line</p>
+<p>Git提供了一个命令git reflog用来记录你的每一次命令<br>[root@localhost ~/testdir]#git reflog<br>032c62c HEAD@{0}: reset: moving to 032c62<br>45bac50 HEAD@{1}: reset: moving to HEAD^<br>032c62c HEAD@{2}: commit: add third line<br>45bac50 HEAD@{3}: commit (amend): test file<br>d764af8 HEAD@{4}: commit (amend): test file<br>c7cf4f9 HEAD@{5}: commit (amend): test file<br>e936f52 HEAD@{6}: commit (initial): test file</p>
+<p>Git跟踪并管理的是修改，而非文件。每次修改完成后都要git add把工作区中被修改的文件放到暂存区，然后在git commit</p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>丢弃工作区中的修改<br>git checkout – file            #–很重要。没有–表示切换分支</p>
+<p>丢弃暂存区中的修改<br>git reset HEAD <file>，然后git checkout – file</file></p>
+<p>生成一个新的文件<br>[root@localhost ~/testdir]#vim test<br>this is a test file</p>
+<p>[root@localhost ~/testdir]#git add test </p>
+<p>[root@localhost ~/testdir]#git commit -m “test file”<br>[master 5175295] test file<br> 1 file changed, 1 insertion(+)<br> create mode 100644 test</p>
+<p>删除工作区中的test<br>[root@localhost ~/testdir]#rm -rf test </p>
+<p>这是工作区与版本库中文件不一样<br>[root@localhost ~/testdir]#git status<br> On branch master<br> Changes not staged for commit:<br>   (use “git add/rm <file>…” to update what will be committed)<br>   (use “git checkout – <file>…” to discard changes in working directory)</file></file></p>
+<pre><code>deleted:    test
+</code></pre><p>no changes added to commit (use “git add” and/or “git commit -a”)</p>
+<p>现在有两个选择<br>确实要从版本库中删除文件<br>[root@localhost ~/testdir]#git rm test<br>rm ‘test’</p>
+<p>[root@localhost ~/testdir]#git commit -m “remove test file”<br>[master 0e53a68] remove test file<br> 1 file changed, 1 deletion(-)<br> delete mode 100644 test</p>
+<p>误删除了工作区中的文件，要从版本库中恢复<br>[root@localhost ~/testdir]#git checkout – test                #git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
+<h2 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h2><p>要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；<br>[root@localhost ~/testdir]#git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:kejlinux/learngit.git                    #origin：仓库名字</p>
+<p>关联后，使用命令git push -u origin master第一次推送master分支的所有内容；</p>
+<p>此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；</p>
+<h2 id="从远程克隆到本地"><a href="#从远程克隆到本地" class="headerlink" title="从远程克隆到本地"></a>从远程克隆到本地</h2><p>要克隆一个仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。</p>
+<p>Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。</p>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>创建一个分支，并切换到分支<br>[root@localhost ~/testdir]#git checkout -b dev        #checkout -b表示创建分支并切换到分支<br>Switched to a new branch ‘slave’</p>
+<p>相当于<br>[root@localhost ~/testdir]#git branch dev            #创建新分支</p>
+<p>[root@localhost ~/testdir]#git checkout dev            #切换分支</p>
+<p>查看当前在哪个分支上<br>[root@localhost ~/testdir]#git branch</p>
+<ul>
+<li>dev                    #*表示当前分支<br>master<br>slave</li>
+</ul>
+<p>修改dev分支上的文件<br>[root@localhost ~/testdir]#vim test<br>this is a test file<br>this is second line</p>
+<p>放入暂存区然后提交<br>[root@localhost ~/testdir]#git add test<br>[root@localhost ~/testdir]#git commit -m “branch test”<br>[dev ec41110] branch test<br> 1 file changed, 1 insertion(+)</p>
+<p>切换到master分区上查看文件<br>[root@localhost ~/testdir]#git checkout master<br>Switched to branch ‘master’</p>
+<p>发现刚才添加的内容不见了。这是因为添加的内容在dev分支上<br>[root@localhost ~/testdir]#cat test<br>this is a test file</p>
+<p>把dev分支合并到master分支上<br>[root@localhost ~/testdir]#git merge dev<br>Updating 5175295..ec41110<br>Fast-forward                #这次合并是“快进模式”，也就是直接把master指向dev的当前提交。<br> test | 1 +<br> 1 file changed, 1 insertion(+)</p>
+<p>查看master分支上的test文件，发现内容和dev分支上的test一样<br>[root@localhost ~/testdir]#cat test<br>this is a test file<br>this is second line</p>
+<p>合并完成后可以删除dev分支<br>[root@localhost ~/testdir]#git branch -d dev<br>Deleted branch dev (was ec41110).</p>
+<p>[root@localhost ~/testdir]#git branch</p>
+<ul>
+<li>master<br>slave</li>
+</ul>
+<h2 id="解决合并冲突"><a href="#解决合并冲突" class="headerlink" title="解决合并冲突"></a>解决合并冲突</h2><p>切换到slave分支上<br>[root@localhost ~/testdir]#git checkout slave<br>Switched to branch ‘slave’</p>
+<p>[root@localhost ~/testdir]#vim test<br>this is a test file<br>branch slave test</p>
+<p>[root@localhost ~/testdir]#git add test<br>[root@localhost ~/testdir]#git commit -m “branch slave test” test </p>
+<p>切换到master分支<br>[root@localhost ~/testdir]#git checkout master<br>Switched to branch ‘master’<br>Your branch is ahead of ‘origin/master’ by 1 commit.                #这是因为有远程仓库。目前仓库和远程仓库内容不相同。<br>  (use “git push” to publish your local commits)</p>
+<p>[root@localhost ~/testdir]#vim test<br>this is a test file<br>this is second line<br>this is third line</p>
+<p>[root@localhost ~/testdir]#git add test<br>[root@localhost ~/testdir]#git commit -m “third line on master” test </p>
+<p>合并分支<br>[root@localhost ~/testdir]#git merge slave<br>Auto-merging test<br>CONFLICT (content): Merge conflict in test<br>Automatic merge failed; fix conflicts and then commit the result.                #发现两个分支有冲突，需要解决冲突</p>
+<p>现在查看test文件，发现git把需要更改的地方标出来了<br>[root@localhost ~/testdir]#cat test<br>this is a test file<br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>this is second line<br>this is third line</p>
+<p>=======<br>branch slave test</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>slave</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>修改test文件，然后提交<br>[root@localhost ~/testdir]#git commit -m “conflict fixed”<br>[master c4d798e] conflict fixed<br>提交完成后不需要合并了。因为修改文件的操作相当于把slave分支上的内容整合到master分支上了</p>
+<p>如果尝试合并<br>[root@localhost ~/testdir]#git merge slave<br>Already up-to-date.                #提示已经更新过数据了</p>
+<p>此时可以删除分支了</p>
+<h2 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h2><p>当正在dev分支上进行工作时，需要临时处理另一个分支slave的工作。这时dev分支上能看到dev分支上未完成的工作<br>[root@localhost ~/testdir]#git branch</p>
+<ul>
+<li>dev<br>master<br>slave</li>
+</ul>
+<p>[root@localhost ~/testdir]#vim test<br>this is a test file<br>this is second line<br>this is third line<br>branch slave test<br>branch on dev<br>branch on dev<br>stash test</p>
+<p>[root@localhost ~/testdir]#git add test                #无论是否放在暂存区，在别的分区上都可以看到修改后的内容</p>
+<p>[root@localhost ~/testdir]#git status<br> On branch dev<br> Changes to be committed:<br>   (use “git reset HEAD <file>…” to unstage)</file></p>
+<pre><code>modified:   test
+</code></pre><p>[root@localhost ~/testdir]#git checkout slave<br>M    test<br>Switched to branch ‘slave’</p>
+<p>[root@localhost ~/testdir]#git status<br> On branch slave<br> Changes to be committed:<br>   (use “git reset HEAD <file>…” to unstage)</file></p>
+<pre><code>modified:   test
+</code></pre><p>可以把当前分支上的工作保存起来。这样在别的分支上就看不到了<br>[root@localhost ~/testdir]#git branch<br>  dev<br>  master</p>
+<ul>
+<li>slave</li>
+</ul>
+<p>[root@localhost ~/testdir]#vim test<br>this is a test file<br>this is second line<br>this is third line<br>branch slave test<br>branch on dev<br>branch on dev<br>stash on slave</p>
+<p>[root@localhost ~/testdir]#git stash<br>Saved working directory and index state WIP on slave: 98c9973 second dev<br>HEAD is now at 98c9973 second dev</p>
+<p>查看保存的内容<br>[root@localhost ~/testdir]#git stash list<br>stash@{0}: WIP on slave: 98c9973 second dev</p>
+<p>切换到别分支上，并不能看到slave分支上的改动<br>[root@localhost ~/testdir]#git checkout master<br>Switched to branch ‘master’</p>
+<p>[root@localhost ~/testdir]#git status<br> On branch master<br> Your branch is ahead of ‘origin/master’ by 3 commits.<br>   (use “git push” to publish your local commits)</p>
+<p>nothing to commit, working directory clean</p>
+<p>恢复保存的内容<br>[root@localhost ~/testdir]#git stash apply                    #这样恢复不会删除保存的内容<br> On branch slave<br> Changes not staged for commit:<br>   (use “git add <file>…” to update what will be committed)<br>   (use “git checkout – <file>…” to discard changes in working directory)</file></file></p>
+<pre><code>modified:   test
+</code></pre><p>no changes added to commit (use “git add” and/or “git commit -a”)</p>
+<p>[root@localhost ~/testdir]#git stash list<br>stash@{0}: WIP on slave: 98c9973 second dev                    #保存的内容还在</p>
+<p>需要手动删除stash保存的内容<br>[root@localhost ~/testdir]#git stash drop stash@{0}<br>Dropped stash@{0} (834ad4d84d47c027e8ccd5c0729f0bac24df4900)</p>
+<p>可以在恢复的同时把stash内容删除<br>[root@localhost ~/testdir]#git stash pop</p>
+<p>可以多次stash。选择性恢复<br>[root@localhost ~/testdir]#git stash apply stash@{0}</p>
+<h2 id="多人协同"><a href="#多人协同" class="headerlink" title="多人协同"></a>多人协同</h2><p>首先，可以试图用git push origin <branch-name>推送自己的修改；</branch-name></p>
+<p>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</p>
+<p>如果合并有冲突，则解决冲突，并在本地提交；</p>
+<p>没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！</branch-name></p>
+<p>如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream-to <branch-name> origin/<branch-name>。</branch-name></branch-name></p>
+<p>从远程克隆分支<br>git clone -b 分支 仓库路径<br>[root@localhost ~/kej/kej]#git clone -b slave  <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:kejlinux/kej.git</p>
+<hr>
 
       
 
@@ -315,7 +462,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2019 Sir Wong
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
