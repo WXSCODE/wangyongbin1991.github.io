@@ -101,3 +101,11 @@ jsonContent:
       excerpt: false
       categories: false
       tags: true
+
+      # Admin
+admin:
+    name: [wangyongbin]
+    password: [20180611]
+    secret: hey hexo
+    expire: 60*1
+    # cors: http://localhost:8888
