@@ -1,3 +1,8 @@
+---
+title: vsCode 配置问文件
+date: 2019-07-01 17:37:26
+tags:
+---
 //  {
 //   "editor.fontSize": 20,
 //   // vscode默认启用了根据文件类型自动设置tabsize的选项
